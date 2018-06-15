@@ -2,7 +2,7 @@
 
 This is a collection of failover methods to ensure EOS producing node High Availability.
 
-## Keepalived
+## Propducing Node Failover via `keepalived`
 
 Keepalived provides simple and robust facilities for load-balancing and high-availability. The load-balancing framework relies on the well-known and widely used Linux Virtual Server (IPVS) kernel module providing Layer4 load-balancing. Keepalived implements a set of checkers to dynamically and adaptively maintain and manage a load-balanced server pool according to their health. Keepalived also implements the VRRPv2 and VRRPv3 protocols to achieve high-availability with director failover.
 
