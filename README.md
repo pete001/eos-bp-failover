@@ -4,7 +4,7 @@ This is a collection of failover methods to ensure EOS producing node High Avail
 
 ## Keepalived
 
-`keepalived` provides simple and robust facilities for load-balancing and high-availability. The load-balancing framework relies on the well-known and widely used Linux Virtual Server (IPVS) kernel module providing Layer4 load-balancing. `keepalived` implements a set of checkers to dynamically and adaptively maintain and manage a load-balanced server pool according to their health. Keepalived also implements the VRRPv2 and VRRPv3 protocols to achieve high-availability with director failover.
+Keepalived provides simple and robust facilities for load-balancing and high-availability. The load-balancing framework relies on the well-known and widely used Linux Virtual Server (IPVS) kernel module providing Layer4 load-balancing. Keepalived implements a set of checkers to dynamically and adaptively maintain and manage a load-balanced server pool according to their health. Keepalived also implements the VRRPv2 and VRRPv3 protocols to achieve high-availability with director failover.
 
 It can be used for simple monitoring, effectively checking the health of individual processes and performing actions based on defined roles.
 
@@ -21,7 +21,7 @@ vrrp_script chk_nodeos {
 
 The idea is that you would set this up on two producing nodes, a `MASTER` and a `BACKUP`.
 
-Here is an example config for a `MASTER`:
+Here is an example config for a `MASTER` (this example does not focus on the networking, there are many tutorials out there on how to do this):
 
 ```
 vrrp_instance ProducerVRRP {
@@ -46,12 +46,18 @@ vrrp_instance ProducerVRRP {
 
 The two important sections here are `track_script` and `notify`.
 
-`chk_nodeos` registers the `nodeos` pid checker.
+`chk_nodeos` registers the `nodeos` process id checker.
 
 `notify` is a link to the script which will be invoked as soon as the `track_script` returns a code other than `0`.
 
 ### The Producer HA Script
 
-`keepalived` will automatically pass the state to the script referenced in `notify`. Using this state we can invoke the relevant `pause` or `resume` call to `nodeos` which works via the `eosio::producer_api_plugin` plugin which must be enabled in the `config.ini`.
+Check the script @ [check_nodes.sh](https://github.com/pete001/eos-bp-failover/blob/master/check_nodeos.sh)
 
-There is an optional Slack webhook that can be used to send a push notification, this could be easily changed to drop in Pager Duty or some other service that will hook into your Ops alerting platform.
+`keepalived` will automatically pass the state to the script referenced in `notify`.
+
+Using this state we can invoke the relevant `pause` or `resume` call to `nodeos` which works via the `eosio::producer_api_plugin` plugin which must be enabled in the `config.ini`.
+
+The idea is that both producing nodes would use the same `signature-provider`, we keep both producers online but thanks to the producer api we can ensure that only 1 producing node is active at one time whilst the backup remains online keeping synced to the network.
+
+Within the `check_nodes.sh` script, there is an optional Slack webhook that can be used to send a push notification on any update. This could be easily changed to drop in Pager Duty or some other service that will hook into your Ops alerting platform.
