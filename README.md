@@ -52,7 +52,7 @@ The two important sections here are `track_script` and `notify`.
 
 ### The Producer HA Script
 
-Check the script @ [check_nodes.sh](https://github.com/pete001/eos-bp-failover/blob/master/check_nodeos.sh)
+Check the script @ [check_nodes.sh](https://github.com/BlockMatrixNetwork/eos-bp-failover/blob/master/check_nodeos.sh)
 
 `keepalived` will automatically pass the state to the script referenced in `notify`.
 
