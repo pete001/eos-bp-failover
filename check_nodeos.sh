@@ -1,18 +1,18 @@
 #!/bin/bash
 
-################################################################################
+############################################################################################
 #
-# This script is activated when keepalived promotes the node to MASTER
+# This script is activated when keepalived wants to promote a new producer
 #
-# The plan is to use the producer API to resume progress
+# The plan is to use the producer API to pause/resume progress based on the STATE
 #
 # There is no provision to restart a downed nodeos process, its assumed this is catered for
 #
 # Made with <3 by Pete @ Block Matrix
 #
-# See more nerd shenanigans @ https://github.com/BlockMatrixNetwork
+# See more EOS nerd shenanigans @ https://github.com/BlockMatrixNetwork
 #
-################################################################################
+############################################################################################
 
 # Change these vars based on your node configuration
 NODEOS_HTTP=localhost
@@ -24,7 +24,7 @@ TYPE=$1
 NAME=$2
 STATE=$3
 
-# Echo the result of the resume curl and call slack if relevant
+# Echo the result of the pause/resume curl and call slack if relevant
 # This could be switched out for any service such as Pager Duty, etc
 function notify()
 {
