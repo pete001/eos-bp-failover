@@ -72,7 +72,7 @@ Within the `check_nodes.sh` script, there is an optional Slack webhook that can 
 
 ### AWS
 
-If you are in AWS, the fun doesn't stop here! There are some extra steps to get around the unicast hurdle.
+If you are in AWS, the fun doesn't stop here! There are some extra steps to get around the multicast/unicast hurdle.
 
 Read more [here](https://github.com/BlockMatrixNetwork/eos-bp-failover/tree/master/aws).
 
