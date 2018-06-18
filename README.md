@@ -8,7 +8,7 @@ It's extremely important for producers to ensure their producing nodes continue 
 
 Click on the preview image for a live demo video:
 
-[![View on YouTube](https://blockmatrix.network/assets/img/keepalived_bp_failover.png?cb=123)](https://www.youtube.com/watch?v=a4Ctvp3Bqzw "View on YouTube")
+[![View on YouTube](https://blockmatrix.network/assets/img/keepalived_bp_failover.png?cb=123)](https://www.youtube.com/watch?v=OuB40yd0z4M "View on YouTube")
 
 Keepalived provides simple and robust facilities for load-balancing and high-availability. The load-balancing framework relies on the well-known and widely used Linux Virtual Server (IPVS) kernel module providing Layer4 load-balancing. Keepalived implements a set of checkers to dynamically and adaptively maintain and manage a load-balanced server pool according to their health. Keepalived also implements the VRRPv2 and VRRPv3 protocols to achieve high-availability with director failover.
 
