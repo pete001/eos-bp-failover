@@ -74,4 +74,4 @@ Within the `check_nodes.sh` script, there is an optional Slack webhook that can 
 
 If you are in AWS, the fun doesn't stop here! There are some extra steps to get around the multicast hurdle.
 
-Read more [here](https://github.com/BlockMatrixNetwork/eos-bp-failover/aws).
+Read more [here](https://github.com/BlockMatrixNetwork/eos-bp-failover/tree/master/aws).
