@@ -75,3 +75,7 @@ Within the `check_nodes.sh` script, there is an optional Slack webhook that can 
 If you are in AWS, the fun doesn't stop here! There are some extra steps to get around the unicast hurdle.
 
 Read more [here](https://github.com/BlockMatrixNetwork/eos-bp-failover/tree/master/aws).
+
+### Next Steps
+
+There are more complex failure states with `nodeos` where the process doesnt die, but it stalls or stops signing blocks. It would be possible to introduce several additional checks into `keepalived` to track and identify these failure states. Expect more on this soon! 
