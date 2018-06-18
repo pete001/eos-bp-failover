@@ -69,3 +69,9 @@ Using this state we can invoke the relevant `pause` or `resume` call to `nodeos`
 The idea is that both producing nodes would use the same `signature-provider`, we keep both producers online but thanks to the producer api we can ensure that only 1 producing node is active at one time whilst the backup remains online keeping synced to the network.
 
 Within the `check_nodes.sh` script, there is an optional Slack webhook that can be used to send a push notification on any update. This could be easily changed to drop in Pager Duty or some other service that will hook into your Ops alerting platform.
+
+### AWS
+
+If you are in AWS, the fun doesn't stop here! There are some extra steps to get around the multicast hurdle.
+
+Read more [here](https://github.com/BlockMatrixNetwork/eos-bp-failover/aws).
