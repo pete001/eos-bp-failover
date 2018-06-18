@@ -1,12 +1,16 @@
 # EOS Block Producer Failover Scripts
 
-This is a collection of failover methods to ensure EOS producing node High Availability.
+It's extremely important for producers to ensure their producing nodes continue to process and sign blocks in the event of failure. This repo will pool well tested, and well documented methods of High Availability for EOS producers.
 
-## Propducing Node Failover via `keepalived`
+## Producing Node Failover via `keepalived`
+
+[![View on YouTube](https://blockmatrix.network/assets/img/keepalived_bp_failover.png)](https://www.youtube.com/watch?v=a4Ctvp3Bqzw "View on YouTube")
 
 Keepalived provides simple and robust facilities for load-balancing and high-availability. The load-balancing framework relies on the well-known and widely used Linux Virtual Server (IPVS) kernel module providing Layer4 load-balancing. Keepalived implements a set of checkers to dynamically and adaptively maintain and manage a load-balanced server pool according to their health. Keepalived also implements the VRRPv2 and VRRPv3 protocols to achieve high-availability with director failover.
 
 It can be used for simple monitoring, effectively checking the health of individual processes and performing actions based on defined roles.
+
+`NOTE:` If you use AWS there are extra steps! There is an AWS specific section at the end of this run through.
 
 ### Setting Up for Nodeos
 
