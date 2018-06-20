@@ -16,6 +16,13 @@ It can be used for simple monitoring, effectively checking the health of individ
 
 `NOTE:` If you use AWS there are extra steps! There is an AWS specific section at the end of this run through.
 
+### Install `keepalived`
+
+```
+sudo apt-get install linux-headers-$(uname -r)
+sudo apt-get install keepalived
+```
+
 ### Setting Up for Nodeos
 
 For a simple configuration, you can instruct `keepalived.conf` to check for the `nodeos` process:
