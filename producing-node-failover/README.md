@@ -63,7 +63,7 @@ The two important sections here are `track_script` and `notify`.
 
 ### The Producer HA Script
 
-Check the script @ [check_nodes.sh](https://github.com/BlockMatrixNetwork/eos-bp-failover/blob/master/check_nodeos.sh)
+Check the script @ [check_nodes.sh](check_nodeos.sh)
 
 `keepalived` will automatically pass the state to the script referenced in `notify`.
 
@@ -77,7 +77,7 @@ Within the `check_nodes.sh` script, there is an optional Slack webhook that can 
 
 If you are in AWS, the fun doesn't stop here! There are some extra steps to get around the multicast/unicast hurdle.
 
-Read more [here](https://github.com/BlockMatrixNetwork/eos-bp-failover/tree/master/aws).
+Read more [here](/aws).
 
 ### Next Steps
 
