@@ -4,7 +4,7 @@
 #
 # This script will request the chain info from an EOS RPC server
 #
-# It will compared the head block time to the currenct time and compute the diff
+# It will compare the head block time to the current time and compute the diff
 #
 # If the diff is greater than an acceptable limit in seconds, it fails
 #
