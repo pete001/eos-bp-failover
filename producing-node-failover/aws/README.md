@@ -1,6 +1,6 @@
 ## Extra Steps for AWS
 
-So why doesn't `keepalived` work in AWS? Well, it's a good question, but it's down to their walled garden. AWS already has their own flavour of services that they would rather you use for this, however it's not always extensible enough to give us the full range of flexibility that a tool like `keepalived` can give us. Thankfully there is a way around their unicast hurdle using `GRE`.
+So why doesn't `keepalived` work in AWS? Well, it's a good question, but it's down to their walled garden. AWS already has their own flavour of services that they would rather you use for this, however it's not always extensible enough to give us the full range of flexibility that a tool like `keepalived` can give us. Thankfully there is a way around their multicast/unicast hurdle using `GRE`.
 
 What the hell is `GRE`? Another valid question! `GRE` tunnels are IP-over-IP tunnels which can encapsulate IPv4/IPv6 and unicast/multicast traffic. To create a `GRE` tunnel on Linux, you need the `ip_gre` kernel module, which is `GRE` over IPv4 tunneling driver.
 
