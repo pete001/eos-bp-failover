@@ -35,4 +35,4 @@ NOW=$(date +"%s")
 DIFF="$(($NOW-$BLOCK))"
 
 # Fail if head block is older than acceptable delay
-[[ $DIFF -gt $DELAY ]] && exit 1 || exit 0
+[[ $DIFF -gt $DELAY ]] && exit 1 || echo "ok"
