@@ -8,7 +8,7 @@ This run through will demonstrate how you can use `bash` to ensure that the loca
 
 Click on the preview image for a live demo video:
 
-[![View on YouTube](https://blockmatrix.network/assets/img/head_block_delay.png?cb=123)](https://youtu.be/-0f0z1GfXAs "View on YouTube")
+[![View on YouTube](https://blockmatrix.network/assets/img/head_block_delay.png?cb=124)](https://youtu.be/-0f0z1GfXAs "View on YouTube")
 
 ### Dependencies
 
