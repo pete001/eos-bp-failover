@@ -24,7 +24,7 @@ To use `vrrp_unicast` bind and peer:
 
 ### iptables
 
-Check out [iptables.rules](https://github.com/BlockMatrixNetwork/eos-bp-failover/blob/master/aws/iptables.rules) for example iptables rules to ensure both nodes can communicate with each other.
+Check out [iptables.rules](iptables.rules) for example iptables rules to ensure both nodes can communicate with each other.
 
 ```
 -A INPUT -d 224.0.0.0/8 -p vrrp -j ACCEPT
@@ -34,7 +34,7 @@ Check out [iptables.rules](https://github.com/BlockMatrixNetwork/eos-bp-failover
 
 ### GRE Config
 
-Check out [gre.cfg](https://github.com/BlockMatrixNetwork/eos-bp-failover/blob/master/aws/gre.cfg) for an example `GRE` config.
+Check out [gre.cfg](gre.cfg) for an example `GRE` config.
 
 ```
 auto gre1
