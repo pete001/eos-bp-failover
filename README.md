@@ -1,11 +1,11 @@
 # EOS Block Producer Failover Scripts
 
-It's extremely important for producers to ensure their producing nodes continue to process and sign blocks in the event of failure.
+It's of critical importance that EOS BP's have a reliable, highly available infrastrcutre.
 
-This repo will pool well tested, and well documented methods of High Availability for EOS producers.
+This repo will pool well tested, and well documented methodologies for monitoring, alerting, fault discovery and faiilover.
 
 ## Methods Covered
 
-- [Producing Node Failover via `keepalived`](/producing-node-failover)
+- [Producing node failover via `keepalived`](/producing-node-failover)
 
-- [Monitoring RPC API](/rpc-api-health-check)
+- [Test if `nodeos` is out of sync](/rpc-api-health-check)

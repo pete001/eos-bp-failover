@@ -1,5 +1,7 @@
 ## Producing Node Failover via `keepalived`
 
+It's extremely important for producers to ensure their producing nodes continue to process and sign blocks in the event of failure.
+
 ### Live Demo
 
 Click on the preview image for a live demo video:
