@@ -70,7 +70,7 @@ Update the parameters at the top of the script, and there are some optional para
 To run the daemon, simply execute:
 
 ```
-./claim_rewards PW5JfDojLFSmMTJfDLwQE5zvE4mjSBDwUpfuZWmws5Ecm4AF2StjX
+./claim_rewards.sh PW5JfDojLFSmMTJfDLwQE5zvE4mjSBDwUpfuZWmws5Ecm4AF2StjX
 ```
 
 ### Automating via `crontab`
