@@ -9,3 +9,5 @@ This repo will pool well tested, and well documented methodologies for monitorin
 - [Producing node failover via `keepalived`](/producing-node-failover)
 
 - [Test if `nodeos` is out of sync](/rpc-api-health-check)
+
+- [Automating `claimrewards`](/claim-rewards)
