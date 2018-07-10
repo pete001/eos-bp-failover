@@ -18,13 +18,13 @@ A successful `claimrewards` will detail your BP payout:
 
 ![Successful claimrewards](https://blockmatrix.network/assets/img/github/claim-rewards-success.png)
 
-#### Failuire
+#### Failure
 
 If `claimrewards` failed, it will relay the error output:
 
 ![Failed claimrewards](https://blockmatrix.network/assets/img/github/claim-rewards-fail.png)
 
-`NOTE`: Use `--verbose-http-errors` with your `nodeos` to get verbose error output like the above.
+**NOTE**: Use `--verbose-http-errors` with your `nodeos` to get verbose error output like the above.
 
 ### Dependencies
 
