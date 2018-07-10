@@ -4,6 +4,8 @@ If you are in the fortunate position of being a paid EOS BP, you have to manuall
 
 This poses problems on many levels so we need to automate it. However, to perform a `claimrewards` you need to have access to an unlocked wallet, and that requires a plaintext password!
 
+Thankfully, with the fancy EOS permission system, we can create a subaccount with a sole purpose of claiming rewards - if the key is compromised its not a big deal.
+
 This implementation is the best known mix between security and automation. It is not perfect, but its the best we've got!
 
 ### Dependencies
@@ -12,29 +14,29 @@ None, just sexy bash.
 
 ### Create your claimer account
 
-As an added layer of security, we can create a separate subaccount and wallet just for actioning the `claimrewards`. The worst thing that could happen if this was compromised would be that a kind hacker could claim the rewards manually for you `ಠ‿ಠ`.
+As an added layer of security, we can create a separate subaccount and wallet just for actioning the `claimrewards`. The worst thing that could happen if this was compromised would be that a kind hacker could claim the rewards for you `ಠ‿ಠ`.
 
 In these examples, replace `blockmatrix` for your own producer name.
 
-- Create a new public/private key pair
+- Create a new public/private key pair:
 
 ```
 cleos create key
 ```
 
-- Create a new wallet and save the wallet password
+- Create a new wallet and save the wallet password:
 
 ```
 cleos wallet create -n claims
 ```
 
-- Import the private key created earlier
+- Import the private key created earlier:
 
 ```
 cleos wallet import CLAIM_PRIVATE_KEY -n claims
 ```
 
-- Activate the `claimrewards` action for this new account
+- Activate the `claimrewards` action for this new account:
 
 ```
 cleos set account permission blockmatrix claims '{"threshold":1,"keys":[{"key":"CLAIM_PUBLIC_KEY","weight":1}]}' "active" -p blockmatrix@active
@@ -51,4 +53,12 @@ To run the daemon, simply execute:
 
 ```
 ./claim_rewards PW5JfDojLFSmMTJfDLwQE5zvE4mjSBDwUpfuZWmws5Ecm4AF2StjX
+```
+
+### Automating via `crontab`
+
+You can make this run every minute via `crontab` with:
+
+```
+(crontab -l ; echo "* * * * * /path/to/claim_rewards.sh PW5JfDojLFSmMTJfDLwQE5zvE4mjSBDwUpfuZWmws5Ecm4AF2StjX")| crontab -
 ```

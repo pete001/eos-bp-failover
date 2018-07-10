@@ -63,7 +63,7 @@ LAST_CLAIM=$($EXEC get table eosio eosio producers -l 10000 | grep -A 6 $PRODUCE
 
 if [[ $? -ne 0 || $LAST_CLAIM -eq 0 ]]; then
     echo "Invalid last claim time, claim manually to set a relevant time"
-    exit 1;
+    exit 1
 fi
 
 # Calculate diff
@@ -74,7 +74,7 @@ DIFF="$(($NOW-$CLAIM_TIME))"
 # Check if the diff exceeds our target
 if [ $DIFF -lt $DIFF_CHECK ]; then
     echo "Not claiming rewards as $DIFF is less than $DIFF_CHECK"
-    exit 1;
+    exit 1
 fi
 
 # Now we can claim rewards
