@@ -34,7 +34,7 @@ CLAIM_WALLET_PASS=$1
 SLACK_WEBHOOK=
 SLACK_CHANNEL="#notifications"
 CLAIM_PERMISSION=claims
-DIFF_CHECK=10
+DIFF_CHECK=86400
 EXEC="$CLEOS -u $API --wallet-url $WALLET"
 
 # Optional slack notification
