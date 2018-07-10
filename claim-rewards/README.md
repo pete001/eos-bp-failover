@@ -8,6 +8,24 @@ Thankfully, with the fancy EOS permission system, we can create a subaccount wit
 
 This implementation is the best known mix between security and automation. It is not perfect, but its the best we've got!
 
+### What You Get
+
+If you reference a [Slack Incoming Webook URL](https://slack.com/apps/A0F7XDUAZ-incoming-webhooks) then you will get shiny notifications to a channel of your choice.
+
+#### Success
+
+A successful `claimrewards` will detail your BP payout:
+
+![Successful claimrewards](https://blockmatrix.network/assets/img/github/claim-rewards-success.png)
+
+#### Failuire
+
+If `claimrewards` failed, it will relay the error output:
+
+![Failed claimrewards](https://blockmatrix.network/assets/img/github/claim-rewards-fail.png)
+
+`NOTE`: Use `--verbose-http-errors` with your `nodeos` to get verbose error output like the above.
+
 ### Dependencies
 
 None, just sexy bash.

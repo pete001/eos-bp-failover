@@ -85,9 +85,9 @@ RESULT=$(($EXEC push action eosio claimrewards "[\"$PRODUCER\"]" -p $PRODUCER@$C
 if [ $? -eq 0 ]; then
     BPAY=$(echo "$RESULT" | grep "$PRODUCER <= eosio.token::transfer" | grep "eosio.bpay" | grep -Eo "[0-9]+\.[0-9]+ EOS")
     VPAY=$(echo "$RESULT" | grep "$PRODUCER <= eosio.token::transfer" | grep "eosio.vpay" | grep -Eo "[0-9]+\.[0-9]+ EOS")
-    notify "Successfully claimed rewards: \`\`\`Block Pay: $BPAY\nVote Pay: $VPAY\`\`\`"
+    notify "Successfully claimed rewards for \`$PRODUCER\`: \`\`\`Block Pay: $BPAY\nVote Pay: $VPAY\`\`\`"
 else
-    notify "$(echo "Claim rewards failed with: \`\`\`$RESULT\`\`\`" | sed 's/\x1B\[[0-9;]\+[A-Za-z]//g')"
+    notify "$(echo "Claim rewards for \`$PRODUCER\` failed: \`\`\`$RESULT\`\`\`" | sed 's/\x1B\[[0-9;]\+[A-Za-z]//g')"
 fi
 
 # Raw output
