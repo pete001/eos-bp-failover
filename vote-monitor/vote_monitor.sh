@@ -71,7 +71,7 @@ do
         DIFF_PRETTY=$(printf "%'d" $DIFF_TOTAL)
         ABS=${DIFF_TOTAL#-}
         if [[ "$ABS" -gt "$MIN_VOTES" ]]; then
-            curl -X POST --data-urlencode "payload={\"channel\": \"$SLACK_CHANNEL\" \"username\": \"EOS Bot\", \"text\": \"Votes changed for \`$PRODUCER\`:\n\`\`\`\nRank #: $PROD_POS\nVote %: $PERCENT\nVote #: $PRETTY ($DIFF_PRETTY)\n\`\`\`\", \"icon_emoji\": \":ghost:\"}" $SLACK_WEBHOOK
+            curl -X POST --data-urlencode "payload={\"channel\": \"$SLACK_CHANNEL\", \"username\": \"EOS Bot\", \"text\": \"Votes changed for \`$PRODUCER\`:\n\`\`\`\nRank #: $PROD_POS\nVote %: $PERCENT\nVote #: $PRETTY ($DIFF_PRETTY)\n\`\`\`\", \"icon_emoji\": \":ghost:\"}" $SLACK_WEBHOOK
         fi
         echo "Votes changed from $(< $FILE) to $ADJUSTED"
         echo $ADJUSTED > $FILE
