@@ -34,7 +34,7 @@ CLAIM_WALLET_PASS=$1
 SLACK_WEBHOOK=https://hooks.slack.com/services/replace_me
 SLACK_CHANNEL="#eos-alerts"
 CLAIM_PERMISSION=claims
-DIFF_CHECK=300
+DIFF_CHECK=86400
 EXEC="$CLEOS -u $API --wallet-url $WALLET"
 
 # Optional slack notification
