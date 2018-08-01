@@ -29,7 +29,7 @@ if [ $# -ne 2 ]; then
 fi
 
 # Calculate the diff
-HEAD=$(curl -s $API | jq .head_block_time | tr -d '"')
+HEAD=$(curl -s $API | jq -r .head_block_time)
 BLOCK=$(date --date=$HEAD +"%s")
 NOW=$(date +"%s")
 DIFF="$(($NOW-$BLOCK))"
