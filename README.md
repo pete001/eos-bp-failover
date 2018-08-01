@@ -11,3 +11,7 @@ This repo will pool well tested, and well documented methodologies for monitorin
 - [Test if `nodeos` is out of sync](/rpc-api-health-check)
 
 - [Automating `claimrewards`](/claim-rewards)
+
+- [Real-time vote monitor](/vote-monitor)
+
+- [External RPC API node monitor](/external-rpc-api-monitor)
