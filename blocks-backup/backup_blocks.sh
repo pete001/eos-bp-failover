@@ -49,7 +49,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Now we can make the backup
-tar -cvzf $BACKUP_DIR/blocks_$DATE.tar.gz -C $BLOCKS_DIR/blocks
+tar -cvzf $BACKUP_DIR/blocks_$DATE.tar.gz $BLOCKS_DIR/blocks
 
 if [ $? -ne 0 ]; then
     notify "There was a problem creating the blocks archive"
