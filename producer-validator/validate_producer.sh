@@ -25,7 +25,7 @@
 
 # Update these for your own settings
 declare -A APIS=( [pete]=blockmatrix1 [jaechung]=hkeoshkeosbp [ankh2054]=eos42freedom [mike]=eosdacserver [igorls]=eosriobrazil [xebb]=eosswedenorg )
-ACTIVE=$(curl -s "https://eosapi.blockmatrix.network/v1/chain/get_producers" -X POST -d '{"json":true, "limit":21}' | jq '.rows')
+ENDPOINT="https://eosapi.blockmatrix.network"
 LOG_LOC="/mnt/stderr.txt"
 SEARCH="/tmp/search.txt"
 FILTER="/tmp/filter.txt"
@@ -34,6 +34,9 @@ SLACK_CHANNEL="#monitoring"
 
 # Create temp log
 tail -n 5000 $LOG_LOC | grep "Received block" > $SEARCH
+
+# Grab the top 21
+ACTIVE=$(curl -s "$ENDPOINT/v1/chain/get_producers" -X POST -d '{"json":true, "limit":21}' | jq '.rows')
 
 # We only care about the last 2min 6sec
 LAST=$(date --date="-126 sec" "+%Y-%m-%dT%H:%M:%S")
@@ -44,7 +47,7 @@ while read line; do
     [[ $line > $LAST && $line < $NOW || $line =~ $NOW ]] && echo $line >> $FILTER
 done < $SEARCH
 
-# Do not change below here
+# Check each producer
 for K in "${!APIS[@]}"
 do
     PRODUCER=$(echo $ACTIVE | jq --arg prd "${APIS[$K]}" '.[] | select(.owner == $prd)')
@@ -54,8 +57,19 @@ do
         continue
     fi
 
+    # First check is to check each producer hit their 6 second target
     COUNT=$(grep -c "${APIS[$K]}" $FILTER)
-    echo "${APIS[$K]} is a top 21 baller, count of blocks: $COUNT"
+    if [ "$COUNT" != "12" ]; then
+        echo "${APIS[$K]} has produced an abnormal number of blocks: $COUNT"
+    fi
+
+    # Second check is to see if there has been any negative latency
+    NEG=$(grep "${APIS[$K]}" $FILTER | grep "latency: -")
+    if [ $? -eq 0 ]; then
+        echo "${APIS[$K]} has negative latency: $NEG"
+    fi
+
+    echo "${APIS[$K]} has 12 healthy blocks and no negative latency"
 done
 
 rm $FILTER $SEARCH
