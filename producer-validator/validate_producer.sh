@@ -59,8 +59,8 @@ do
 
     # First check is to check each producer hit their 6 second target
     COUNT=$(grep -c "${APIS[$K]}" $FILTER)
-    if [ "$COUNT" != "12" ]; then
-        echo "${APIS[$K]} has produced an abnormal number of blocks: $COUNT"
+    if [[ "$COUNT" < "12" ]]; then
+        echo "${APIS[$K]} has produced less than 12 blocks: $COUNT"
     fi
 
     # Second check is to see if there has been any negative latency
