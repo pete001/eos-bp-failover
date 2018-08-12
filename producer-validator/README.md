@@ -4,8 +4,8 @@ These monitor scripts use a local `nodeos` log to highlight whether any producer
 
 There are 2 scripts:
 
-- [validate_producer.sh](/validate_producer.sh) allows you to keep track of a defined list of BPs.
-- [validate_producers_all.sh](/validate_producers_all.sh) allows you to dynamically track the top 21 BPs.
+- [validate_producer.sh](validate_producer.sh) allows you to keep track of a defined list of BPs.
+- [validate_producers_all.sh](validate_producers_all.sh) allows you to dynamically track the top 21 BPs.
 
 ### What You Get
 
