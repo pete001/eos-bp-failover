@@ -87,8 +87,11 @@ do
         PASS=0
     fi
 
-    # Output if they passed all checks
+    # Output if they passed all checks, the offending lines if not
     if [ $PASS -eq 1 ]; then
         echo "${APIS[$K]} has 12 healthy blocks and no negative latency"
+    else
+        LOG=$(grep -C 1 "${APIS[$K]}" $FILTER | sed 's/thread-0 producer_plugin.cpp:327 on_incoming_block \] //')
+        echo "$LOG"
     fi
 done
