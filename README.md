@@ -17,3 +17,5 @@ This repo will pool well tested, and well documented methodologies for monitorin
 - [External RPC API node monitor](/external-rpc-api-monitor)
 
 - [Blocks directory backup](/blocks-backup)
+
+- [Block Production Validator](/producer-validator)
