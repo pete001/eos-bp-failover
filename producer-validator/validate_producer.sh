@@ -93,5 +93,6 @@ do
     else
         LOG=$(grep -C 1 "${APIS[$K]}" $FILTER | sed 's/thread-0 producer_plugin.cpp:327 on_incoming_block \] //')
         echo "$LOG"
+        [[ ! -z $SLACK_WEBHOOK ]] && curl -s -X POST --data-urlencode "payload={\"channel\": \"$SLACK_CHANNEL\", \"username\": \"EOS Bot\", \"text\": \"\`\`\`\n$LOG\n\`\`\`\", \"icon_emoji\": \":ghost:\"}" $SLACK_WEBHOOK > /dev/null 2>&1
     fi
 done
