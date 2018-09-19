@@ -39,19 +39,19 @@ In these examples, replace `blockmatrix` for your own producer name.
 - Create a new public/private key pair:
 
 ```
-cleos create key
+cleos create key --to-console
 ```
 
 - Create a new wallet and save the wallet password:
 
 ```
-cleos wallet create -n claims
+cleos wallet create -n claims --to-console
 ```
 
 - Import the private key created earlier:
 
 ```
-cleos wallet import CLAIM_PRIVATE_KEY -n claims
+cleos wallet import --private-key CLAIM_PRIVATE_KEY -n claims
 ```
 
 - Activate the `claimrewards` action for this new account:
