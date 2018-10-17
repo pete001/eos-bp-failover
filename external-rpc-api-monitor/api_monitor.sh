@@ -45,6 +45,14 @@ do
 
     # Calculate the diff
     HEAD=$(echo $JSON | jq -r .head_block_time)
+
+    # Fail if jq was unsuccessful
+    if [ $? -ne 0 ] || [ $HEAD == "null" ]; then
+        OUTPUT=$(sed 's/"/\\"/g' <<< $JSON)
+        curl -s -X POST --data-urlencode "payload={\"channel\": \"$SLACK_CHANNEL\", \"username\": \"EOS Bot\", \"text\": \"\`$K\` your API node @ ${APIS[$K]} returned invalid JSON:\n\`\`\`\n$OUTPUT\n\`\`\`\", \"icon_emoji\": \":ghost:\"}" $SLACK_WEBHOOK
+        continue
+    fi
+
     BLOCK=$(date --date=$HEAD +"%s")
     NOW=$(date +"%s")
     DIFF="$(($NOW-$BLOCK))"

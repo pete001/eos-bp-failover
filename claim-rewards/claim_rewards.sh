@@ -49,15 +49,6 @@ if [[ ! $CLAIM_WALLET_PASS =~ ^PW5.* ]]; then
     exit 1
 fi
 
-# Unlock the wallet
-$EXEC wallet lock_all > /dev/null 2>&1
-$EXEC wallet unlock -n $CLAIM_PERMISSION --password $CLAIM_WALLET_PASS > /dev/null 2>&1
-
-if [ $? -ne 0 ]; then
-    echo "Incorrect wallet password"
-    exit 1
-fi
-
 # Fetch the last claim time for the producer and validate
 LAST_CLAIM=$($EXEC get table eosio eosio producers -l 10000 | grep -A 6 $PRODUCER | grep last_claim_time | grep -o '[[:digit:]]*')
 
@@ -79,6 +70,12 @@ fi
 
 # Now we can claim rewards
 $EXEC wallet unlock -n $CLAIM_PERMISSION --password $CLAIM_WALLET_PASS > /dev/null 2>&1
+
+if [ $? -ne 0 ]; then
+    echo "Incorrect wallet password"
+    exit 1
+fi
+
 RESULT=$(($EXEC push action eosio claimrewards "[\"$PRODUCER\"]" -p $PRODUCER@$CLAIM_PERMISSION) 2>&1)
 
 # Notify via slack
