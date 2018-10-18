@@ -69,6 +69,7 @@ if [ $DIFF -lt $DIFF_CHECK ]; then
 fi
 
 # Now we can claim rewards
+$EXEC wallet lock_all > /dev/null 2>&1
 $EXEC wallet unlock -n $CLAIM_PERMISSION --password $CLAIM_WALLET_PASS > /dev/null 2>&1
 
 if [ $? -ne 0 ]; then
@@ -76,7 +77,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-RESULT=$(($EXEC push action eosio claimrewards "[\"$PRODUCER\"]" -p $PRODUCER@$CLAIM_PERMISSION) 2>&1)
+RESULT=$(($EXEC push action eosio claimrewards "[\"$PRODUCER\"]" -p $PRODUCER@$CLAIM_PERMISSION -x 1000) 2>&1)
 
 # Notify via slack
 if [ $? -eq 0 ]; then
