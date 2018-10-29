@@ -40,14 +40,14 @@ do
     fi
 
     # The sorted vote object
-    VOTES=$(curl -s "https://eosapi.blockmatrix.network/v1/chain/get_producers" -X POST -d '{"json":true, "limit":200}' | jq '.rows' | jq '[keys[] as $k | .[$k] | .rank=$k+1]' | jq --arg prd "$PRODUCER" '.[] | select(.owner == $prd)')
+    VOTES=$(curl -s "https://proxy.eosnode.tools/v1/chain/get_producers" -X POST -d '{"json":true, "limit":200}' | jq '.rows' | jq '[keys[] as $k | .[$k] | .rank=$k+1]' | jq --arg prd "$PRODUCER" '.[] | select(.owner == $prd)')
 
     # Producer votes
     PROD_VOTES=$(echo $VOTES | jq -r .total_votes)
     PROD_POS=$(echo $VOTES | jq -r .rank)
 
     # Total vote weight
-    TOTAL=$(curl -s "https://eosapi.blockmatrix.network/v1/chain/get_table_rows" -X POST -d '{"scope":"eosio", "code": "eosio", "table": "global", "json": true}' | jq '.rows[0]' | jq -r .total_producer_vote_weight)
+    TOTAL=$(curl -s "https://proxy.eosnode.tools/v1/chain/get_table_rows" -X POST -d '{"scope":"eosio", "code": "eosio", "table": "global", "json": true}' | jq '.rows[0]' | jq -r .total_producer_vote_weight)
 
     # Calculate the vote %
     PERCENT1=$(echo ${PROD_VOTES%\.*})

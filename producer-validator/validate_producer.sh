@@ -28,7 +28,7 @@
 
 # Update these for your own settings
 declare -A APIS=( [pete]=blockmatrix1 [jaechung]=hkeoshkeosbp [ankh2054]=eos42freedom [mike]=eosdacserver [igorls]=eosriobrazil [xebb]=eosswedenorg )
-ENDPOINT="https://eosapi.blockmatrix.network"
+ENDPOINT="https://proxy.eosnode.tools"
 NODEOS_LOG="/mnt/stderr.txt"
 
 # Optional slack notifications add incoming webhook url to activate it

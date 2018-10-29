@@ -12,7 +12,7 @@
 #
 # Example call:
 #
-# ./nodeos_head_block.sh https://eosapi.blockmatrix.network 30
+# ./nodeos_head_block.sh https://proxy.eosnode.tools 30
 #
 # Made with <3 by Pete @ Block Matrix
 #

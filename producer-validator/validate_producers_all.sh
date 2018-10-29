@@ -25,7 +25,7 @@
 ###################################################################################################
 
 # Update these for your own settings
-ENDPOINT="https://eosapi.blockmatrix.network"
+ENDPOINT="https://proxy.eosnode.tools"
 NODEOS_LOG="/mnt/stderr.txt"
 
 # Optional slack notifications add incoming webhook url to activate it
@@ -57,7 +57,7 @@ function notify()
 }
 
 # Check each producer
-for PRODUCER in $(curl -s "https://eosapi.blockmatrix.network/v1/chain/get_producers" -X POST -d '{"json":true, "limit":21}' | jq '.rows[]' | jq -r .owner)
+for PRODUCER in $(curl -s "https://proxy.eosnode.tools/v1/chain/get_producers" -X POST -d '{"json":true, "limit":21}' | jq '.rows[]' | jq -r .owner)
 do
     PASS=1
 
