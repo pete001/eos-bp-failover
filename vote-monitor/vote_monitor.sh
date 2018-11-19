@@ -68,10 +68,27 @@ do
     # Notify
     if [[ $(< $FILE) != "$ADJUSTED" ]]; then
         DIFF_TOTAL=$(bc -l <<< "$ADJUSTED-$(< $FILE)")
+        DIFF_TOTAL=$(($DIFF_TOTAL + 0))
+
+        case 1 in
+            $(($DIFF_TOTAL <= -10000000)))EMOJI="❄️❄️❄️❄️❄️❄️";;
+            $(($DIFF_TOTAL <= -1000000))) EMOJI="❄️❄️❄️❄️❄️";;
+            $(($DIFF_TOTAL <= -100000)))  EMOJI="❄️❄️❄️❄️";;
+            $(($DIFF_TOTAL <= -10000)))   EMOJI="❄️❄️❄️";;
+            $(($DIFF_TOTAL <= -1000)))    EMOJI="❄️❄️";;
+            $(($DIFF_TOTAL <= 0)))        EMOJI="❄️";;
+            $(($DIFF_TOTAL <= 1000)))     EMOJI="👆🏻";;
+            $(($DIFF_TOTAL <= 10000)))    EMOJI="💪🏻";;
+            $(($DIFF_TOTAL <= 100000)))   EMOJI="⭐️";;
+            $(($DIFF_TOTAL <= 1000000)))  EMOJI="🔥";;
+            $(($DIFF_TOTAL <= 10000000))) EMOJI="💥";;
+                                        *)EMOJI="🙈";;
+        esac
+
         DIFF_PRETTY=$(printf "%'d" $DIFF_TOTAL)
         ABS=${DIFF_TOTAL#-}
         if [[ "$ABS" -gt "$MIN_VOTES" ]]; then
-            curl -X POST --data-urlencode "payload={\"channel\": \"$SLACK_CHANNEL\", \"username\": \"EOS Bot\", \"text\": \"Votes changed for \`$PRODUCER\`:\n\`\`\`\nRank #: $PROD_POS\nVote %: $PERCENT\nVote #: $PRETTY ($DIFF_PRETTY)\n\`\`\`\", \"icon_emoji\": \":ghost:\"}" $SLACK_WEBHOOK
+            curl -X POST --data-urlencode "payload={\"channel\": \"$SLACK_CHANNEL\", \"username\": \"EOS Bot\", \"text\": \"$EMOJI Votes changed for \`$PRODUCER\`:\n\`\`\`\nRank #: $PROD_POS\nVote %: $PERCENT\nVote #: $PRETTY ($DIFF_PRETTY)\n\`\`\`\", \"icon_emoji\": \":ghost:\"}" $SLACK_WEBHOOK
         fi
         echo "Votes changed from $(< $FILE) to $ADJUSTED"
         echo $ADJUSTED > $FILE
