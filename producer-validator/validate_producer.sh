@@ -50,10 +50,8 @@ ACTIVE=$(curl -s "$ENDPOINT/v1/chain/get_producers" -X POST -d '{"json":true, "l
 LAST=$(date --date="-126 sec" "+%Y-%m-%dT%H:%M:%S")
 NOW=$(date "+%Y-%m-%dT%H:%M:%S")
 
-# Create filtered log
-while read line; do
-    [[ $line > $LAST && $line < $NOW || $line =~ $NOW ]] && echo $line >> $FILTER
-done < $SEARCH
+# Create filter for last 126 seconds.
+sed -n "/$LAST/,/$NOW/p" $SEARCH > $FILTER
 
 # Handle notifications
 function notify()
