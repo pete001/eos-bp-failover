@@ -50,15 +50,15 @@ if [[ ! $CLAIM_WALLET_PASS =~ ^PW5.* ]]; then
 fi
 
 # Fetch the last claim time for the producer and validate
-LAST_CLAIM=$($EXEC get table eosio eosio producers -l 10000 | grep -A 6 $PRODUCER | grep last_claim_time | grep -o '[[:digit:]]*')
+LAST_CLAIM=$($EXEC get table eosio eosio producers -l 10000 | grep -A 6 $PRODUCER | grep last_claim_time | cut -d "\"" -f4)
 
-if [[ $? -ne 0 || $LAST_CLAIM -eq 0 ]]; then
+if [[ $? -ne 0 ]]; then
     echo "Invalid last claim time, claim manually to set a relevant time"
     exit 1
 fi
 
 # Calculate diff
-CLAIM_TIME=$(($LAST_CLAIM / 1000000))
+CLAIM_TIME=$(date -d "$LAST_CLAIM" +"%s")
 NOW=$(date +"%s")
 DIFF="$(($NOW-$CLAIM_TIME))"
 
