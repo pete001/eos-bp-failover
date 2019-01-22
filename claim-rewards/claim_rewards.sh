@@ -50,7 +50,7 @@ if [[ ! $CLAIM_WALLET_PASS =~ ^PW5.* ]]; then
 fi
 
 # Fetch the last claim time for the producer and validate
-LAST_CLAIM=$(curl -sX POST https://proxy.eosnode.tools/v1/chain/get_table_rows -d '{"scope":"eosio", "code":"eosio", "table":"producers", "json":true, "limit":10000}' | jq --arg prd "$PRODUCER" -r '.rows[] | select(.owner==$prd) | .last_claim_time')
+LAST_CLAIM=$(curl -sX POST "$API/v1/chain/get_table_rows" -d '{"scope":"eosio", "code":"eosio", "table":"producers", "json":true, "limit":10000}' | jq --arg prd "$PRODUCER" -r '.rows[] | select(.owner==$prd) | .last_claim_time')
 
 if [[ $? -ne 0 ]]; then
     echo "Invalid last claim time, claim manually to set a relevant time"
